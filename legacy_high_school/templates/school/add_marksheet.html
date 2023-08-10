@@ -1,0 +1,32 @@
+<h1>Add Marksheet</h1>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-success" role="alert">
+            {{ message }}
+        </div>
+    {% endfor %}
+{% endif %}
+<form method="POST">
+    {% csrf_token %}
+    <div class="form-group">
+        <label for="student_id">Student ID</label>
+        <select class="form-control" name="student_id">
+            {% for student in students %}
+                <option value="{{ student.user.id }}">{{ student.user.first_name }} {{ student.user.last_name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="subject_id">Subject</label>
+        <select class="form-control" name="subject_id">
+            {% for subject in subjects %}
+                <option value="{{ subject.id }}">{{ subject.name }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div class="form-group">
+        <label for="marks">Marks</label>
+        <input type="number" class="form-control" name="marks" placeholder="Enter marks">
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>

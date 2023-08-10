@@ -1,0 +1,90 @@
+{% extends 'school/studentbase.html' %}
+{% load custom_filters %}  <!-- Load the custom filter -->
+{% block content %}
+
+<head>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+
+</head>
+
+<div class="container">
+  <div class="row">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h1>Midterm Results for {{ student.get_name }}</h1>
+      </div>
+      <table>
+<thead>
+    <tr>
+        <th>Subject</th>
+        <th>Test 1</th>
+        <th>Test 2</th>
+        <th>Total Midterm</th>
+        <th>GRADE</th>
+    </tr>
+</thead>
+<tbody>
+    <!-- {% debug %}  -->
+    {% for result in mylist %}
+    <tr>
+        <td>{{ result.subject.name }}</td>
+        <td>{{ result.test1 }}</td>
+        <td>{{ result.test2 }}</td>
+        <td>
+            {% if result.total_mark is not None %}
+                {{ result.total_mark }}
+            {% else %}
+                N/A
+            {% endif %}
+        </td>
+        <td>
+            {% if result.total_mark %}
+                {% with total_mark_percentage=result.total_mark|percentage %}
+                    {% if total_mark_percentage >= 80 %}
+                        A1
+                    {% elif total_mark_percentage >= 75 %}
+                        B2
+                    {% elif total_mark_percentage >= 70 %}
+                        B3
+                    {% elif total_mark_percentage >= 65 %}
+                        C4
+                    {% elif total_mark_percentage >= 60 %}
+                        C5
+                    {% elif total_mark_percentage >= 50 %}
+                        C6
+                    {% elif total_mark_percentage >= 45 %}
+                        D7
+                    {% elif total_mark_percentage >= 40 %}
+                        E8
+                    {% else %}
+                        F9
+                    {% endif %}
+                {% endwith %}
+            {% else %}
+                N/A
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends 'school/studentbase.html' %}
+
+
+
+{% block content %}
+
+<head>
+
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+
+  <style media="screen">
+    a:link {
+      text-decoration: none;
+    }
+
+    h6 {
+      text-align: center;
+    }
+
+    .row {
+      margin: 100px;
+    }
+  </style>
+
+</head>
+
+
+<div class="container">
+
+  <div class="row">
+
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h6 class="panel-title">Students</h6>
+
+      </div>
+
+      <table class="table table-hover table-striped table-bordered" id="dev-table">
+        <thead>
+
+          <tr>
+            <th>Name</th>
+            <th>subject_id</th>
+            <th>marks_obtained</th>
+            <th>status</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        {% for m in marks %}
+        <tr>
+          <td> {{Marks.name}}</td>
+          <td> {{Marks.subject_id}}</td>
+          <td>{{Marks.marks_obtained}}</td>
+          <td>{{Marks.status}}</td>
+          <!-- <td>{{Result.classes_cl}}</td> -->
+      
+        </tr>
+
+        {% endfor %}
+      </table>
+    </div>
+
+
+  </div>
+</div>
+
+
+
+
+
+{% endblock content %}
